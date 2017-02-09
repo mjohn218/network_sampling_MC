@@ -1,0 +1,10 @@
+
+#First create the PMFfile.txt if not already done so
+
+if [ ! -f PMFfile.txt ]; then
+  cat PMFfile.txta* >> PMFfile.txt
+  rm PMFfile.txta*
+fi
+
+#Run code
+./mc_iin_opt.exe parms_iin.inp CME_Pro_Names.inp CME_ProPro_Assigned_norepeats.txt CME_IIN_net.txt > run0.out

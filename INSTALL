@@ -1,0 +1,48 @@
+***Compiling***
+
+If you have all the prerequisites, you only need to use the command
+
+  make
+
+to compile the program.
+
+***Prerequisites***
+
+You will need a C/C++ compiler, such as g++. 
+
+An install of gcc will produce compilers in a directory such as /opt/local/bin/
+the Makefile is defaulted to a specific version, g++-mp-6. This can be changed to g++ or any other version.
+
+
+This code requires the following libraries
+
+This code requires the following libraries:
+
+Linux systems:
+libgsl
+libgfortran
+libm
+libblas
+libstdc++
+
+libblas may be replaced with libg2c if you do not have it, but you must change the Makefile (change all instances of -lblas to -lg2c)
+
+Mac systems:
+libgsl
+libgfortran
+libm
+libquadmath
+libstdc++
+
+1. libm is usually in /usr/lib
+2. libgsl must be installed, the Makefile will find it automatically once it is installed.
+3. libgfortran, libquadmath, and libstdc++ should all be in the same place. An install of gcc will put them in a directory such as
+/opt/local/lib/gcc6 (for version gcc6). 
+
+
+
+The Windows command line does not use bash, and thus you must have a GNU tool if you wish to run this code on a Windows machine.
+
+If you have a library installed but the Makefile cannot find it, try adding the library path to the LIBS variable. An example path is
+-L/usr/local/lib
+The Makefile will search this folder for any relevant libraries.

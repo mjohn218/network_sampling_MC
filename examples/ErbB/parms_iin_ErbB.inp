@@ -1,0 +1,13 @@
+127 # npro
+268 # nedge
+50000 #N MC iterations
+1 #MC Net T
+1000 #netwrite
+2 #flagsplit
+4 #beta
+0.5 #mu
+2.3 #kappa
+0.02 #omega
+0.1 #zeta
+0 #fitnessflag
+2 #PAEflag

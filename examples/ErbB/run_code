@@ -1,0 +1,4 @@
+
+#Run command below
+
+./mc_iin_opt.exe parms_iin.inp ErbB_Pro_Names.inp ErbB_Edges_new.txt ErbB_IIN_Reduced_new.txt > run0.out

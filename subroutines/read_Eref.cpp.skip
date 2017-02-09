@@ -1,0 +1,24 @@
+#include "read_Eref.h"
+
+
+void read_Eref(int nwhole, ppidata *ppi, ifstream &reffile, int **Eref)
+{
+  int i, j;
+  for(i=0;i<nwhole;i++){
+    for(j=0;j<EDIM*EDIM;j++){
+      Eref[i][j]=0;
+    }
+  }
+  int m;
+  char str[40];
+  for(i=0;i<nwhole;i++){
+    reffile>>str;
+    cout <<"string: "<<str<<endl;
+    for(j=0;j<ppi[i].nppartner;j++){
+      for(m=0;m<ppi[i].nppartner;m++)
+	reffile >>Eref[i][j*EDIM+m];
+    }
+  }
+  
+  
+}

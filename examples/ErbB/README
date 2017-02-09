@@ -1,0 +1,73 @@
+To run code, set parms_iin.inp to desired parameters.
+
+./mc_iin_opt.exe parms_iin.inp ErbB_Pro_Names.inp ErbB_Edges_new.txt ErbB_IIN_Reduced_new.txt
+
+The last argument is optional. If you use the parameter flagsplit=0 or flagsplit=1, the program will initialize the IIN structure itself, none needs to be read in.
+
+OUTPUTS:
+1. The code prints to screen the input data read in, and the instantaneous IIN structures. The IIN is defined by two components. First, the interface identities on each protein, Second, the binding partners for each interface.
+2. OptNet_Beta[betavalue].mu[muvalue].kappa[kappavalue].omega[omegavalue].zeta[zetavalue].Temp[].fs[flagsplit].out. This file contains the instantaneous statistics about the IIN network properties.
+
+
+INPUTS:
+ErbB_Pro_Names.inp: list of the proteins in the PPIN
+ErbB_Edges_new.txt: list of edges in the PPIN
+ErbB_IIN_Reduced_new.txt: First, it assigns each protein a number (from 0 to N protein) then it lists the number of interfaces per protein, then the identities of those interfaces.
+After this data is read in, it subsequently lists the partners for each interface in the IIN, so it is numbered from 0 to N_interfaces. 
+
+
+
+The parameters do the following
+
+****PPIN parameters****
+
+npro: Number of proteins in the network
+nedge: Number of protein-protein interactions in the network
+
+****Fitness function parameters****
+
+beta:  Penalizes high clustering (triangles)
+kappa: Penalizes unclosed chains
+mu: Penalizes a high number of interfaces, either on individual proteins or absolute number in the system depending on the fitness function used
+omega: Penalizes extra edges, ie more than one binding mode between a pair of proteins
+zeta: Only used for fitnessflag=2. Zeta penalizes self-looped nodes with other connections
+
+fitnessflag: Used to control how mu operates on interfaces in the network, Takes integers 0, 1 or 2.
+	     0: Penalizes a high number of interfaces per protein
+
+	     1: Penalizes the absolute number of interfaces in the network
+
+	     2: Penalzies the absolute number of interfaces in the network, and any self-looped nodes with high degree
+
+
+****Initial IIN structure****
+
+flagsplit: Decides how to initialize the IIN structure, Takes integers 0, 1, or 2.
+
+	   0: Initializes from the "dense" initial state, where each protein has one interface
+	   1: Initializes from the "sparse" initial state, where each edge has a separate interface on each protein.
+
+	   2: Initializes from a manually defined network (This requires a fourth input file!)
+
+*****Method for PAE calculation on networks*******
+
+PAEflag: By reading in the file (0), the calculation is sped up. It is also very fast to calculate the mean of the degree distribution rather than fit it (2).
+	 0: Calculates the PAE by stochastically generating networks to compare the IIN degree distribution to each iteration. This process is very slow
+
+	 1: Reads in a file ("PMFfile.txt") containing degree distributions for different network sizes and densities and different PAEs. Compares to the IIN to find the best fit PAE.
+IF YOU WISH TO USE THIS OPTION then you must create the PMFfile.txt file. Do this with the bash command:
+cat PMFfile.txta* >> PMFfile.txt
+Github does not allow storage of large files, which was why this was broken up.
+
+       2: Calculates the index of dispersion (variance/mean) of the degree distribution instead of the PAE
+
+
+
+**********MC Sampling******
+
+Nit_net: number of MC steps to perform
+MCTemp: The "temperature" for the Boltzmann probability distribution, kBT. A high MCTemp makes suboptimal moves more likely to be accepted
+netwrite: Frequency of steps to write out the IIN structure.
+
+
+
