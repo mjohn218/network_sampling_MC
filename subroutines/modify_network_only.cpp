@@ -218,7 +218,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
   Cglobal=closed*1.0/(1.0*(open+closed));
   if(closed==0)Cglobal=0;
   Clocal=avg/ninterface;
-  cout<<"Clocal: " << Clocal << " Cglobal: "<<Cglobal << endl;
+  //cout<<"Clocal: " << Clocal << " Cglobal: "<<Cglobal << endl;
   for(j=0;j<maxnif;j++)
     pmf[j]=0.0;
   for(j=0;j<ninterface;j++){
@@ -355,7 +355,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
       }
     
     move=id;
-    cout << "move is: " << move << endl;
+    //cout << "move is: " << move << endl;
     switch(move){
     case 0:
       //This move is no longer used
@@ -448,17 +448,17 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 	network_fit=mc_fit6(ntmpinterface, grid_cofs, clocals, kappa, beta, nwhole, wholetemp, mu, tmppartners, omega*(numedge-PPIedge),templist,zeta);
     
 
-      cout<<"Network fitness is: " << network_fit << endl;
+      //cout<<"Network fitness is: " << network_fit << endl;
     
       newfit=network_fit;
       /*If we accept, then copy templist into Speclist, otherwise, leave
       templist alone*/
       del=newfit-oldfit;//want small fitness
-      cout << "Del equals: " << del << endl;
+      //cout << "Del equals: " << del << endl;
       //Calculate probability of accepting move
       prob=exp(-MCbeta*del)*pgen_ratio;
     
-      cout <<"in prob pgen: "<<pgen_ratio<<" del: "<<del<<" prob: "<<prob<<endl;
+      //cout <<"in prob pgen: "<<pgen_ratio<<" del: "<<del<<" prob: "<<prob<<endl;
       if(prob>1)
 	flagacc=1;
       else{
@@ -479,7 +479,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 
 	//Accept the move. Change Speclist to templist.
 	acc++;
-	cout <<"Accepted move of type "<<move<<" change: "<<del<<" newfit: "<<newfit<<" oldfit: "<<oldfit<<endl;
+	//cout <<"Accepted move of type "<<move<<" change: "<<del<<" newfit: "<<newfit<<" oldfit: "<<oldfit<<endl;
 	nsquares=temphist[4][1];
 	nchains=temphist[3][1];
 	n4hubs=temphist[3][0];
@@ -514,7 +514,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
       } else {
 	/*Reject move*/
 	
-	cout <<"Rejected move of type "<<move<<" change: "<<del<<" newfit: "<<newfit<<" oldfit: "<<oldfit<<endl;
+	//cout <<"Rejected move of type "<<move<<" change: "<<del<<" newfit: "<<newfit<<" oldfit: "<<oldfit<<endl;
 	newfit=oldfit;
 
 	moverej[move]++;
@@ -662,7 +662,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
        */
       if(t>=Nit*1/5){
 	if((flagacc==1 && chg==1) || degk==0){
-	    cout<<"Recalculating values"<<endl;
+	    //cout<<"Recalculating values"<<endl;
               for(i=0;i<ninterface;i++){
                   self[i]=0;
                   for(j=0;j<numpartners[i];j++){
@@ -673,7 +673,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 	      Cglobal=closed*1.0/(1.0*(open+closed));
               if(closed==0)Cglobal=0;
               Clocal=avg/ninterface;
-	      cout<<"Clocal: " << Clocal << " Cglobal: "<<Cglobal << endl;
+	      //cout<<"Clocal: " << Clocal << " Cglobal: "<<Cglobal << endl;
               
               //Need to make Adj matrix
               for(i=0;i<maxnif*maxnif;i++)
@@ -691,7 +691,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 	        if(modsizes[j]>giant)
 	            giant=modsizes[j];
               }
-	      cout << "Largest module size: " << giant << endl;
+	      //cout << "Largest module size: " << giant << endl;
                             
               degk=0;
               for(j=0;j<maxnif;j++)
@@ -704,7 +704,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 		pmf[j]/=(1.0*ninterface);
 	      }
               degk/=(1.0*ninterface);
-              cout << "Average degree: " << degk << endl;
+              //cout << "Average degree: " << degk << endl;
 	      
 	      if(PAEflag==1)
 		degalpha=findAlpha(pmf, numedge, ninterface, nwhole,maxnif, PPIedge, maxne, sampPMFs);
@@ -719,7 +719,7 @@ void modify_network_only(int nwhole, int ninterface, int *numpartners, int **Spe
 		degalpha/=degk;//This is the Index of Dispersion
 	      }
          
-	      cout << "Alpha: " << degalpha << endl;
+	      //cout << "Alpha: " << degalpha << endl;
               
 	      numedge=0.0;
 	      for(i=0;i<ninterface;i++){
