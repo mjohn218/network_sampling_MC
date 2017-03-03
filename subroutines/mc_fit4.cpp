@@ -15,7 +15,7 @@ double mc_fit4(int ninterface, double *grid_cofs, double *clocals, double ksi, d
 
 
     double tmp;
-    cout<<"ksi component of fitness is: " << fitness << endl;
+    //cout<<"ksi component of fitness is: " << fitness << endl;
     tmp = fitness;
 
     for(i=0;i<ninterface;i++){
@@ -23,16 +23,16 @@ double mc_fit4(int ninterface, double *grid_cofs, double *clocals, double ksi, d
 	fitness+=exp(beta*clocals[i])-1; //clocal>0 means a triangle present. Penalize this.
       }
     }
-    cout << "The beta component is: " << fitness-tmp << endl;
+    //cout << "The beta component is: " << fitness-tmp << endl;
     tmp=fitness;
     for(i=0;i<nwhole;i++){
       fitness+=exp(mu*wholep[i].ninterface); //This portion penalizes having too many interfaces on each protein.
     }
 
-    cout << "The mu component is: " << fitness-tmp << endl;
+    //cout << "The mu component is: " << fitness-tmp << endl;
     tmp=fitness;
     fitness+=exp(edgediff); //Penalizes having too many edges
-    cout<<"The omega component is: " << fitness-tmp << endl;
+    //cout<<"The omega component is: " << fitness-tmp << endl;
     return fitness;
     
 }
