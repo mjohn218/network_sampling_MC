@@ -1,1 +1,1 @@
-# ppi_to_iin
+Given a protein-protein interaction network (PPIN) sample possible structures of interface interaction networks (IINs). Performs random sampling of the PPIN, or biased sampling on the PPIN based on the fitness function defined in Holland, D. et al., Sci. Reports, 7, 5631 (2017):https://www.nature.com/articles/s41598-017-05686-2
